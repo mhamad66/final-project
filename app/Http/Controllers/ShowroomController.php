@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Showroom;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,16 @@ class ShowroomController extends Controller
      */
     public function store(Request $request)
     {
-        Showroom::create($request->validated());
+        Showroom::create([
+            'name' => $request['name'],
+            'district' => $request['district'],
+            'address' => $request['address'],
+            'total_space' => $request['total_space'],
+            'longitude' => $request['longitude'],
+            'latitude' => $request['latitude'],
+            'avg_sales' => $request['avg_sales'],
+
+        ]);
         return response()->json(['Message' => 'Stored Successfully'], 200);
     }
 
@@ -49,7 +59,6 @@ class ShowroomController extends Controller
     {
         $showroom = Showroom::find($id);
         return $showroom->toJson();
-
     }
 
     /**
@@ -72,7 +81,15 @@ class ShowroomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Showroom::where('id', $id)->update($request->validated());
+        Showroom::where('id', $id)->update([
+            'name' => $request['name'],
+            'district' => $request['district'],
+            'address' => $request['address'],
+            'total_space' => $request['total_space'],
+            'longitude' => $request['longitude'],
+            'latitude' => $request['latitude'],
+            'avg_sales' => $request['avg_sales'],
+        ]);
         return response()->json(['Message' => 'Updated Successfully'], 200);
     }
 

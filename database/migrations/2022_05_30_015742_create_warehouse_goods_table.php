@@ -15,10 +15,11 @@ class CreateWarehouseGoodsTable extends Migration
     {
         Schema::create('warehouse_goods', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('warehouse_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('good_id')->constrained()->cascadeOnDelete();
-            $table->integer('avg_amount')->comment('average amount by month');
-            $table->integer('current_amount');
+
+            $table->foreignId('warehouse_id')->constrained('warehouses');
+            $table->foreignId('good_id')->constrained('goods');
+            $table->integer('avg_amount')->comment('average amount by month')->nullable();
+            $table->integer('current_amount')->nullable();
             $table->timestamps();
 
         });

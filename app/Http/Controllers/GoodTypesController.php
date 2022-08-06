@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Warehouse;
+use App\Models\Good_Type;
 use Illuminate\Http\Request;
 
-class WarehouseController extends Controller
+class GoodTypesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class WarehouseController extends Controller
      */
     public function index()
     {
-        return Warehouse::all();
+        return  Good_Type::all();
     }
 
     /**
@@ -30,40 +30,29 @@ class WarehouseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        Warehouse::create([
-            'district' => $request['district'],
-            'address' => $request['address'],
-            'total_space' => $request['total_space'],
-            'longitude' => $request['longitude'],
-            'latitude' => $request['latitude'],
-            'avg_sales' => $request['avg_sales'],
-
-        ]);
-        return response()->json(['Message' => 'Stored Successfully'], 200);
+        Good_Type::create(['name'=>$request['name']]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $Warehouse = Warehouse::find($id);
-        return $Warehouse->toJson();
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -74,32 +63,24 @@ class WarehouseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        Warehouse::where('id', $id)->update([
-            'district' => $request['district'],
-            'address' => $request['address'],
-            'total_space' => $request['total_space'],
-            'longitude' => $request['longitude'],
-            'latitude' => $request['latitude'],
-            'avg_sales' => $request['avg_sales'],]);
-        return response()->json(['Message' => 'Updated Successfully'], 200);
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Warehouse::destroy($id);
-
+        Good_Type::destroy($id);
         return response()->json(['Message' => 'Deleted Successfully'], 200);
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWarehouseTradeGoodsSuggestionsTable extends Migration
+class CreateNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateWarehouseTradeGoodsSuggestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('warehouse_trade_goods_suggestions', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('warehouse_id')->constrained('warehouses');
-            $table->json('warehouses');
+            $table->foreignId('user_id')->constrained('users');
+            $table->string('title');
+            $table->string('body');
+            $table->boolean('isReading');
+
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateWarehouseTradeGoodsSuggestionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('warehouse_trade_goods_suggestions');
+        Schema::dropIfExists('notifications');
     }
 }

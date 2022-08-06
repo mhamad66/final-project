@@ -15,8 +15,9 @@ class CreateShowroomSalesTable extends Migration
     {
         Schema::create('showroom_sales', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('showroom_id')->unsigned();
-            $table->bigInteger('good_id')->unsigned();
+            $table->foreignId('showroom_id')->constrained('showrooms');
+            $table->foreignId('good_id')->constrained('goods');
+
             $table->integer('amount');
             $table->timestamps();
         });

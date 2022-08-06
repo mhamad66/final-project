@@ -16,16 +16,20 @@ class CreateShowroomsTable extends Migration
         Schema::create('showrooms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigInteger('district_id')->unsigned();
+            $table->string('district')->nullable();
+            $table->string('address')->nullable();
+            $table->integer('total_space');
             $table->float('longitude');
             $table->float('latitude');
-            $table->string('phone');
+            $table->float('avg_sales')->default(0)->nullable();
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
+
             //Foreign Key
-            $table->foreign('district_id')
-                ->references('id')
-                ->on('districts')
-                ->onDelete('cascade');
+            // $table->foreign('district_id')
+            //     ->references('id')
+            //     ->on('districts')
+            //     ->onDelete('cascade');
 
         });
     }

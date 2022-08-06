@@ -15,6 +15,7 @@ class CreateShowroomSapmlesTable extends Migration
     {
         Schema::create('showroom_sapmles', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('showroom_id')->constrained('showrooms');
             $table->timestamps();
         });
     }

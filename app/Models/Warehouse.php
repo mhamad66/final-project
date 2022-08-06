@@ -7,10 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Warehouse extends Model
 {
+    protected $fillable = [
+        'district_id',
+        'address',
+        'total_space',
+        'longitude',
+        'latitude',
+        'avg_sales'
+    ];
     use HasFactory;
+
     public function district()
     {
-        return $this->belongsTo(District::class,'district_id');
+        return $this->belongsTo(District::class, 'district_id');
     }
 
     public function goods()

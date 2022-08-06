@@ -15,6 +15,7 @@ class CreateGoodsTable extends Migration
     {
         Schema::create('goods', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignId('good_type_id')->constrained('good__types');
             $table->string('good_name');
             $table->string('image')->default('image.png');
             $table->decimal('price', 15, 3)->default(0);

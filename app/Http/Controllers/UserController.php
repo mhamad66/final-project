@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Warehouse;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class WarehouseController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class WarehouseController extends Controller
      */
     public function index()
     {
-        return Warehouse::all();
+        return User::all();
     }
 
     /**
@@ -35,16 +35,14 @@ class WarehouseController extends Controller
      */
     public function store(Request $request)
     {
-        Warehouse::create([
-            'district' => $request['district'],
+        User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => $request['password'],
             'address' => $request['address'],
-            'total_space' => $request['total_space'],
-            'longitude' => $request['longitude'],
-            'latitude' => $request['latitude'],
-            'avg_sales' => $request['avg_sales'],
-
+            'phone' => $request['phone'],
+            'image' => $request['image'],
         ]);
-        return response()->json(['Message' => 'Stored Successfully'], 200);
     }
 
     /**
@@ -55,9 +53,7 @@ class WarehouseController extends Controller
      */
     public function show($id)
     {
-        $Warehouse = Warehouse::find($id);
-        return $Warehouse->toJson();
-
+        //
     }
 
     /**
@@ -80,13 +76,14 @@ class WarehouseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Warehouse::where('id', $id)->update([
-            'district' => $request['district'],
+        User::where('id', $id)->update([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => $request['password'],
             'address' => $request['address'],
-            'total_space' => $request['total_space'],
-            'longitude' => $request['longitude'],
-            'latitude' => $request['latitude'],
-            'avg_sales' => $request['avg_sales'],]);
+            'phone' => $request['phone'],
+            'image' => $request['image'],
+        ]);
         return response()->json(['Message' => 'Updated Successfully'], 200);
     }
 
@@ -98,7 +95,7 @@ class WarehouseController extends Controller
      */
     public function destroy($id)
     {
-        Warehouse::destroy($id);
+        User::destroy($id);
 
         return response()->json(['Message' => 'Deleted Successfully'], 200);
     }

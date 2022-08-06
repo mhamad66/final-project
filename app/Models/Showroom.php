@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Showroom extends Model
 {
+    protected $fillable = [
+        'district',
+        'address',
+        'name',
+        'total_space',
+        'longitude',
+        'latitude',
+        'avg_sales'
+    ];
     use HasFactory;
 
     public function samples()
