@@ -17,11 +17,13 @@ class CreateGoodsTable extends Migration
             $table->bigIncrements('id');
             $table->string('good_name');
             $table->string('image')->default('image.png');
-            $table->decimal('price',15,3)->default(0);
-            $table->string('company');
+            $table->decimal('price', 15, 3)->default(0);
+            $table->integer('amount');
+            $table->string('company')->nullable();
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
